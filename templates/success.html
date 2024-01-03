@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success:Signing </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        #logo {
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .verification-result {
+            color: green;
+        }
+
+        .verification-failed {
+            color: red;
+        }
+        .signature-wrapped {
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-width: 680px; /* adjust as needed */
+        }
+        
+        /* Style for the download link */
+        #download-link {
+            display: block;
+            color: #e7ebee; /* Set the link color */
+            text-decoration: none; /* Remove underline */
+            font-size: 18px;
+            font-weight: bold; /* Make the text bold */
+            margin-top: 10px;
+        }
+
+        #download-link:hover {
+            color: #360baf; /* Change link color on hover */
+        }
+
+        /* Style for the download button */
+        #download-button {
+            display: block;
+            background-color: #4c81af; /* Set the button background color */
+            color: white; /* Set the button text color */
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #download-button:hover {
+            background-color: #356094; /* Change button background color on hover */
+        }
+
+        table {
+             border: 1px solid #ddd; /* adjust border thickness and color */
+             border-bottom: 1px solid #ddd; /* adjust thickness and color */
+        }
+        .hash-value {
+            color: #0026ff;
+        }
+
+        .signature {
+            color: #ee33ff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img id="logo" src="{{ url_for('static', filename='images/logo_1.png') }}" alt="Company Logo">
+        <br><a href="http://10.1.13.63:5000/">   Home </a>
+        <h1>ONE-Signing Server</h1>
+    </header>
+
+    <main>
+        <h2>File Signature Details</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SHA256 Hash</td>
+              <td class="hash-value">{{ hash_value }}</td>
+            </tr>
+            <tr>
+                <td>RSA2048 Signature</td>
+                <td class="signature-wrapped signature">{{ signature }}</td>
+              </tr>
+            <tr>
+              <td>SW Version</td>
+              <td>{{ sw_version }}</td>
+            </tr>
+            <tr>
+              <td>Rollback ID</td>
+              <td>{{ rollback_id }}</td>
+            </tr>
+            <tr>
+              <td>Signature Validity</td>
+              <td>{{ verification_result }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        {% if verification_result %}
+            <p class="verification-result">Verify with Public Key: Signature is valid.</p>
+            <div id="download-link">
+                {{ download_link|safe}}
+            </div>
+        {% else %}
+            <p class="verification-failed">Verification Result: Signature is invalid.</p>
+        {% endif %}
+    </main>
+
+    <footer>        
+        &copy; ONE (Our Next Energy),2024         
+    </footer>
+</body>
+</html>

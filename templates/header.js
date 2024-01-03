@@ -1,0 +1,1 @@
+document.write('<header>This is a common header</header>');

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help</title>
+    <style>
+        /* Add your desired styles for headings, paragraphs, images, etc. */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #acac12;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1, h2, p {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #acac12;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+ 
+        /* Style for scalable images */
+
+        /* Style for scalable images */
+        .logo_image,
+        .file_structure_image,
+        .signing_image,
+        .ca_image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .logo_image {
+            max-width: 10%;
+        }
+        .signing_image{
+            max-width: 60%;
+        }
+        .file_structure_image {
+            max-width: 80%;
+        }
+
+
+        .ca_image {
+            max-width: 50%;
+        }       
+        main {
+            padding: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+            <img id="logo" src="images/logo_1.png" alt="Company Logo" class="logo_image">  
+            <br>
+            <a href="http://10.1.13.63:5000/">   Home </a>  
+     
+        <h1>Signing Overview</h1>
+    </header>
+
+    <main>
+
+        <h2>1)What are Digital Signatures?</h2>
+        <p> Digital signatures in cars act like invisible security seals, safeguarding data like software updates and sensor readings. These unique digital fingerprints verify the data's origin and integrity, preventing tampering and ensuring trust in updates and diagnostics . They're like electronic guardians, keeping your car healthy and secure on the road.</p>
+        <img src="images/Signature_101_Signing.png" alt="Digital Signature" class="signing_image"> 
+
+        <h2>2)File Structure Overview?</h2>
+
+        <img src="images/Signature_101_LB_RBIn.png" alt="FileStructure" class="file_structure_image"> 
+        <h2>3)Expected Inputs from the user?</h2>
+ 
+        <ul>
+            <li>Header -&gt; 0xCOFFEEEE</li>
+            <li>Rollback ID</li>
+            <li>Length of File</li>
+            <li>SHA256 - Hash of the file content</li>
+            <li>RSA2048 - Signature of the Hash</li>
+        </ul>        
+
+        <img src="images/file_structure.png" alt="FileStructure" class="file_structure_image"> 
+        <h2>4)Certificate Authority</h2>
+        <p>
+            Imagine a secure pyramid of trust in the digital world: the three-level chain of certificates. At the top sits the Root CA, the grand emperor, trusted by everyone. Below, Intermediate CAs, the trusted advisors, vouch for other certificates. Finally, at the base, Leaf Certificates act like passports, issued to websites or applications and verified by the CAs above. Each CA signs the certificate below, creating a chain of trust that confirms authenticity and legitimacy. This multi-layered validation ensures only those approved by the trusted root have access, keeping the digital realm safe and secure.</p>
+        <img src="images/Signature_101_CA.png" alt="Certificate Hierarchy" class="ca_image"> 
+        
+    </main>
+
+    <footer>
+        &copy; ONE (Our Next Energy),2024  
+    </footer>
+
+</body>
+</html>

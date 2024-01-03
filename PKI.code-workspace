@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "../../Documents/CProg"
+		},
+		{
+			"path": "../../Documents/mbedtls"
+		},
+		{
+			"path": "../../../../var/www/html"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"test.h": "c",
+			"aes.h": "c"
+		}
+	}
+}

@@ -1,0 +1,1 @@
+document.write('<header>&copy; ONE.AI , {{ 2024 }}</header>');

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PKI Server Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4c77af;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        #logo {
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        main {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img id="logo" src="path/to/your/logo.png" alt="Company Logo">
+        <h1>Welcome to the PKI Server</h1>
+    </header>
+
+    <main>
+      <p>This is the welcome page for your PKI server. Here, you can find information about the server, its capabilities, and how to get started.</p>
+      <ul>
+        <li><strong>What is a PKI server?</strong> A PKI server is a central server that manages the creation, distribution, and validation of digital certificates.</li>
+        <li><strong>What can this server do?</strong> This server can be used to issue certificates for various purposes, such as server authentication, client authentication, and code signing.</li>
+        <li><strong>How to get started?</strong> To get started, please refer to the server documentation. You will need to install and configure the server, and then you can begin issuing certificates.</li>
+      </ul>
+  
+
+        <title>Code Signing Repository</title>
+        <h2>Upload a Binary File</h2>
+        <form action="/" method=post enctype=multipart/form-data>
+          <p><input type=file name=file>
+             <input type=submit value=Upload>
+        </form>    
+    </main>
+</body>
+</html>
