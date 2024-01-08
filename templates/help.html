@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8; /* Light gray background */
+        }
+
+        header {
+            background-color: #3e5872; /* Dark blue-gray header */
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: relative; /* Added relative positioning for logo alignment */
+        }
+        .header-content {
+            flex-grow: 1;
+        }        
+
+        .logo_image {
+            max-width: 20%;
+            float:left;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            text-align: left;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 32px;
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        h3 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #000;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #3e5872;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .help_link{
+            font-size: 25px;
+            margin-left: auto; /* Move the help link to the right */
+        }
+        .file_structure_image,
+        .signing_image,
+        .ca_image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .signing_image {
+            max-width: 60%;
+            height: 600px; /* Adjusted height to 100 pixels, replace with your desired value */
+        }
+
+        .LB_structure_image {
+            max-width: 70%;
+            height: 400px; 
+        }
+        .file_structure_image {
+            max-width: 70%;
+            height: 600px; 
+        }        
+
+        .ca_image {
+            max-width: 50%;
+        }
+
+
+
+  
+    </style>
+</head>
+<body>
+
+    <header>            
+
+        <img id="logo" src="{{ url_for('static', filename='images/logo_1.png') }}" alt="Company Logo" class="logo_image">
+        <div class="title-container">
+            <h1>FAQ's</h1> <br>            
+            <a href="{{ url_for('welcome') }}" class="help_link"> Home  </a> <br>
+        </div>        
+    </header>
+
+    <main>
+        <h2>1) What are Digital Signatures?</h2>
+        <p> Digital signatures in cars act like invisible security seals, safeguarding data like software updates and sensor readings. These unique digital fingerprints verify the data's origin and integrity, preventing tampering and ensuring trust in updates and diagnostics. They're like electronic guardians, keeping your car healthy and secure on the road.</p>
+
+        <img src="{{ url_for('static', filename='images/Signature_101_Signing.png') }}" alt="Digital Signature" class="signing_image">
+        <h2>2) Certificate Authority</h2>
+        <p>
+            Imagine a secure pyramid of trust in the digital world: the three-level chain of certificates. At the top sits the Root CA, the grand emperor, trusted by everyone. Below, Intermediate CAs, the trusted advisors, vouch for other certificates. Finally, at the base, Leaf Certificates act like passports, issued to websites or applications and verified by the CAs above. Each CA signs the certificate below, creating a chain of trust that confirms authenticity and legitimacy. 
+            <br> <br>This multi-layered validation ensures only those approved by the trusted root have access, keeping the digital realm safe and secure.</p>
+        <img src="{{ url_for('static', filename='images/Signature_101_CA.png') }}" alt="Certificate Hierarchy" class="ca_image">  
+        <h2>3) File Signing Overview?</h2>
+        To ensure integrity and authenticity, the developer must first create a digital fingerprint of the specified logical block using a hash function. This unique hash value is then attached to the binary image file. The developer subsequently uploads the combined file to a specialized signing portal.
+        <br> <br>Upon receipt, the signing portal meticulously verifies the uploaded file's integrity by independently calculating a hash value for the entire binary image. This calculated hash is rigorously compared to the original hash provided by the developer.
+        <br> <br>In addition to hash verification, the signing portal conducts further scrutiny, examining essential software metadata such as version numbers, headers, and rollback identifiers. Once these thorough checks are complete, the signing portal digitally signs the binary image, embedding its signature within the file.
+        <br> <br>This comprehensive process safeguards the binary image's integrity, authenticity, and trustworthiness, ensuring its suitability for secure deployment and usage.
+        <img src="{{ url_for('static', filename='images/Signature_101_LB_RBIn.png') }}" alt="FileStructure" class="LB_structure_image">
+        <h2>4) Hex- View of Signed File</h2>
+        <ul>
+            <li>Header -&gt; 0xCOFFEEEE</li>
+            <li>Rollback ID</li>
+            <li>Length of File</li>
+            <li>Fingerprint : Hash(SHA256) of the executable content</li>
+            <li>Notes : Indicating Demo keys were used</li>
+            <li>Signature (RSA2048) of the fingerprint</li>
+            <li>Executable :  Application /Calibration/Bootloader</li>
+        </ul>        
+
+        <img src="{{ url_for('static', filename='images/file_structure.png') }}"   alt="Hex View" class="file_structure_image"> 
+     
+        <h2>5) What is a rollback attack ? </h2>
+        <p>In the world of cybersecurity, a rollback attack refers to a malicious attempt to manipulate a system's state by reverting it to a previous and potentially vulnerable condition. Imagine it like rewinding time on a computer system software, but for nefarious purposes.</p>
+        <br><br><br><br>
+        <br><br><br><br>
+        
+
+    </main>
+
+    <footer>
+        &copy; ONE (Our Next Energy), 2024  
+    </footer>
+
+</body>
+</html>

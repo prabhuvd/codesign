@@ -3,35 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success:Signing </title>
+    <title>Success: Signing</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f8f8f8; /* Light gray background */
         }
 
         header {
-            background-color: #4CAF50;
+            background-color: #2ecc71; /* Emerald green header */
             color: white;
             text-align: center;
             padding: 1em;
+            position: relative; /* Added relative positioning for logo alignment */
         }
 
-        #logo {
-            max-width: 100px;
-            max-height: 100px;
-            margin-top: 10px;
-            margin-left: 10px;
+        .header-content {
+            flex-grow: 1;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 32px;
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        h3 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #000;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
         }
 
         main {
             padding: 20px;
+            text-align: left;
         }
 
+ 
         footer {
-            background-color: #4CAF50;
+            background-color: #2ecc71; /* Emerald green footer */
             color: white;
             text-align: center;
             padding: 1em;
@@ -40,38 +58,59 @@
             width: 100%;
         }
 
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .help_link{
+            font-size: 25px;
+            margin-left: auto; /* Move the help link to the right */
+        }
+        .hash-value {
+            color: #0026ff; /* Blue hash value */
+        }
+        .logo_image {
+            max-width: 20%;
+            float:left;            
+        }
+        .signature {
+            color: #ee33ff; /* Purple signature */
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-width: 680px; /* Adjust as needed */
+        }
+
         .verification-result {
-            color: green;
+            color: #2ecc71; /* Green verification result */
         }
 
         .verification-failed {
-            color: red;
+            color: #e74c3c; /* Red verification result */
         }
-        .signature-wrapped {
-            white-space: pre-wrap;
-            word-break: break-word;
-            max-width: 680px; /* adjust as needed */
-        }
-        
-        /* Style for the download link */
+
         #download-link {
             display: block;
-            color: #e7ebee; /* Set the link color */
-            text-decoration: none; /* Remove underline */
+            color: #e7ebee; /* Light gray download link */
+            text-decoration: none;
             font-size: 18px;
-            font-weight: bold; /* Make the text bold */
+            font-weight: bold;
             margin-top: 10px;
         }
 
         #download-link:hover {
-            color: #360baf; /* Change link color on hover */
+            color: #360baf; /* Purple on hover */
         }
 
-        /* Style for the download button */
         #download-button {
             display: block;
-            background-color: #4c81af; /* Set the button background color */
-            color: white; /* Set the button text color */
+            background-color: #4c81af; /* Blue download button */
+            color: white;
             padding: 10px 20px;
             font-size: 18px;
             border: none;
@@ -80,61 +119,56 @@
         }
 
         #download-button:hover {
-            background-color: #356094; /* Change button background color on hover */
-        }
-
-        table {
-             border: 1px solid #ddd; /* adjust border thickness and color */
-             border-bottom: 1px solid #ddd; /* adjust thickness and color */
-        }
-        .hash-value {
-            color: #0026ff;
-        }
-
-        .signature {
-            color: #ee33ff;
+            background-color: #356094; /* Darker blue on hover */
         }
     </style>
 </head>
 <body>
     <header>
-        <img id="logo" src="{{ url_for('static', filename='images/logo_1.png') }}" alt="Company Logo">
-        <br><a href="http://10.1.13.63:5000/">   Home </a>
-        <h1>ONE-Signing Server</h1>
+        <img id="logo" src="{{ url_for('static', filename='images/logo_1.png') }}" alt="Company Logo" class="logo_image">
+        <div class="title-container">
+            <h1>ONE-Seal</h1> 
+            <h3><i>Sealing Excellence in Every Line of Code ...</i></h3>            
+            <a href="{{ url_for('welcome') }}" class="help_link"> Home  </a> |  
+            <a href="{{ url_for('help') }}" class="help_link">FAQ's</a> 
+        </div>
+ 
     </header>
 
     <main>
         <h2>File Signature Details</h2>
 
         <table>
-          <thead>
-            <tr>
-              <th>Field</th>
-              <th>Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>SHA256 Hash</td>
-              <td class="hash-value">{{ hash_value }}</td>
-            </tr>
-            <tr>
-                <td>RSA2048 Signature</td>
-                <td class="signature-wrapped signature">{{ signature }}</td>
-              </tr>
-            <tr>
-              <td>SW Version</td>
-              <td>{{ sw_version }}</td>
-            </tr>
-            <tr>
-              <td>Rollback ID</td>
-              <td>{{ rollback_id }}</td>
-            </tr>
-            <tr>
-              <td>Signature Validity</td>
-              <td>{{ verification_result }}</td>
-            </tr>
-          </tbody>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SHA256 Hash</td>
+                    <td class="hash-value">{{ hash_value }}</td>
+                </tr>
+                <tr>
+                    <td>RSA2048 Signature</td>
+                    <td class="signature">{{ signature }}</td>
+                </tr>
+                <tr>
+                    <td>SW Version</td>
+                    <td>{{ sw_version }}</td>
+                </tr>
+                <tr>
+                    <td>Rollback ID</td>
+                    <td>{{ rollback_id }}</td>
+                </tr>
+
+                <tr>
+                    <td>Signature Validity</td>
+                    <td class="{% if verification_result %}verification-result{% else %}verification-failed{% endif %}">{{ verification_result }}</td>
+                </tr>
+                              
+            </tbody>
         </table>
 
         {% if verification_result %}
@@ -147,8 +181,8 @@
         {% endif %}
     </main>
 
-    <footer>        
-        &copy; ONE (Our Next Energy),2024         
+    <footer>
+        &copy; ONE (Our Next Energy), 2024         
     </footer>
 </body>
 </html>

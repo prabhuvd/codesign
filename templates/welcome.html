@@ -17,14 +17,22 @@
             color: white;
             text-align: center;
             padding: 1em;
+            display: flex;
+            align-items: center;
         }
 
-        #logo {
-            max-width: 100px;
-            max-height: 100px;
-            margin-top: 10px;
-            margin-left: 10px;
+        .logo_image {
+            max-width: 20%;
+            float:left;             
         }
+        .help_link{
+            font-size: 25px;
+            margin-left: auto; /* Move the help link to the right */
+        }
+        .title-container {
+            flex-grow: 1;  /*Allow the title to take up remaining space */
+            text-align: center;
+        }        
 
         main {
             padding: 20px;
@@ -42,33 +50,41 @@
         }
 
         input[type="file"] {
-            background-color: #aed5df; /* Change the background color */
-            color: #0f117c; /* Change the text color */
-            padding: 8px 16px; /* Adjust padding */
-            border: 1px solid #ccc; /* Add a border */
-            border-radius: 5px; /* Add rounded corners */
+            background-color: #aed5df;
+            color: #0f117c;
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
-        /* Hover style for the Browse button */
+
         input[type="file"]:hover {
-            background-color: #dddddd; /* Change the background color on hover */
+            background-color: #dddddd;
         }
-        /* Style for the Sign button (button[type="submit"]) */
+
         button[type="submit"] {
-            background-color: #4c81af; /* Keep the existing color */
-            color: white; /* Keep the existing text color */
-            padding: 10px 50px; /* Keep the existing padding */
-            border: none; /* Keep the existing border */
-            cursor: pointer; /* Keep the existing cursor style */
+            background-color: #4c81af;
+            color: white;
+            padding: 10px 80px;
+            font-size: 20px;   /* Added font size */
+            border: none;
+            cursor: pointer;
         }
 
-        /* Hover style for the Sign button */
         button[type="submit"]:hover {
-            background-color: #356094; /* Change the background color on hover */
+            background-color: #356094;
         }
-
+        h1 {
+            margin-top: 20px;
+            font-size: 32px;
+        }
         h2 {
             margin-top: 20px;
             font-size: 24px;
+        }
+        h3 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #000;
         }
 
         p {
@@ -85,59 +101,48 @@
             bottom: 0;
             width: 100%;
         }
+
         .form-container {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Align elements vertically */
-            gap: 10px; /* Add spacing between elements */
+            align-items: center;
+            gap: 10px;
         }
 
         .form-group {
             display: flex;
-            align-items: center; /* Align label and input vertically */
+            align-items: center;
         }
 
         .form-group label {
-            margin-right: 10px; /* Adjust spacing as needed */
+            margin-right: 10px;
         }
-
-     
     </style>
-        <script>
-            
-            document.addEventListener('DOMContentLoaded', function() {
-                // Get the current directory
-                var currentDirectory = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-    
-                // Display the current directory in an element with the id "currentDirectory"
-                document.getElementById('currentDirectory').textContent = currentDirectory;
-            });
-        </script>     
 </head>
 <body>
     <header>
-        <img id="logo" src="{{ url_for('static', filename='images/logo_1.png') }}" alt="Company Logo">
-        <h1>ONE-Signing Server</h1>
-        <div class="help-link">
-            <a href="{{ url_for('static', filename='help.html') }}"> Help </a>
-        </div>              
+        <img id="logo" src="{{ url_for('static', filename='images/logo_1.png') }}" alt="Company Logo" class="logo_image">
+        <div class="title-container">
+            <h1>ONE-Seal</h1> 
+            <h3><i>Sealing Excellence in Every Line of Code ...</i></h3>            
+            <a href="{{ url_for('help') }}" class="help_link">FAQ's</a>
+        </div>
+ 
     </header>
 
     <main>
+
         {% if error %}
             <p style="color: red;">{{ error }}</p>
         {% endif %}
 
- 
-        
         <form action="/" method="post" enctype="multipart/form-data" class="form-container">
             <div class="form-group">
-              <label for="file">Select file:</label>
-              <input type="file" name="file" id="file" accept=".bin" capture="environment">
+                <label for="file">Upload:</label>
+                <input type="file" name="file" id="file" accept=".bin" capture="environment">
             </div>
             <button type="submit">Sign</button>
-          </form>
-          
+        </form>
 
         {% if hash_value and signature %}
             <h2>File Signature Details</h2>
@@ -149,12 +154,10 @@
                 <p style="color: red;">Verification Result: Signature is invalid.</p>
             {% endif %}
         {% endif %}
-  
     </main>
 
-
-    <footer>      
-        &copy; ONE (Our Next Energy),2024  
+    <footer>
+        &copy; ONE (Our Next Energy), 2024
     </footer>
 
 </body>

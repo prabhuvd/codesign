@@ -99,9 +99,15 @@ def download(filename):
     signed_file_path="download/"+signed_file_path
     return send_file(signed_file_path, as_attachment=True)
 
+
+@app.route('/help')
+def help():
+    print("got called help ....")
+    return render_template('help.html')
+
 if __name__ == '__main__':
     #app.run(debug=True)
-    ssl_context = ('cert.pem', 'key.pem')
-    #app.run(host='10.1.13.63', port=5000, debug=True)
-    app.run(host='192.168.68.107', port=5000, debug=True)
+    #ssl_context = ('cert.pem', 'key.pem')
+    app.run(host='10.1.13.63', port=5000, debug=True)
+    #app.run(host='192.168.68.107', port=5000, debug=True)
     #app.run(host='10.1.13.63', port=5000, debug=True,ssl_context=ssl_context)

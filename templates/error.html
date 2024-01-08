@@ -3,35 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error:Signing </title>
+    <title>Error: Signing</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f8f9fa; /* Professional-looking background color */
         }
 
         header {
-            background-color: #af664c;
+            background-color: #dc3545; /* Professional-looking header background color */
             color: white;
             text-align: center;
             padding: 1em;
+            position: relative; /* Added relative positioning for logo alignment */
         }
-
-        #logo {
-            max-width: 100px;
-            max-height: 100px;
-            margin-top: 10px;
-            margin-left: 10px;
+        h1 {
+            margin-top: 20px;
+            font-size: 32px;
         }
-
+        h2 {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        h3 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #000;
+        }
+ 
         main {
             padding: 20px;
         }
-
+        .help_link{
+            font-size: 25px;
+            margin-left: auto; /* Move the help link to the right */
+        }
         footer {
-            background-color: #af664c;
+            background-color: #dc3545; /* Professional-looking footer background color */
             color: white;
             text-align: center;
             padding: 1em;
@@ -41,28 +51,35 @@
         }
  
         .logo_image {
-            max-width: 50%;
-            height: auto;
+            max-width: 20%;
+            float:left;            
         }
 
         .error-message {
-            color: red;
+            color: #dc3545; /* Matching color for error messages */
+            font-size: 18px; /* Adjusting font size for better readability */
         }
     </style>
 </head>
 <body>
+
     <header>
         <img id="logo" src="{{ url_for('static', filename='images/logo_1.png') }}" alt="Company Logo" class="logo_image">
-        <br><a href="http://10.1.13.63:5000/">   Home </a>
-        <h1>ONE-Signing Server</h1>
-    </header>
+        <div class="title-container">
+            <h1>ONE-Seal</h1> 
+            <h3><i>Sealing Excellence in Every Line of Code ...</i></h3>        
+            <a href="{{ url_for('welcome') }}" class="help_link"> Home  </a> |  
+            <a href="{{ url_for('help') }}" class="help_link">FAQ's</a> 
 
+        </div>
+ 
+    </header>
     <main>
         <p class="error-message">{{ error_message }}</p>
     </main>
 
     <footer>
-        &copy; ONE (Our Next Energy),2024  
+        &copy; ONE (Our Next Energy), 2024  
     </footer>
 </body>
 </html>
