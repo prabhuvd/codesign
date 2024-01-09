@@ -97,13 +97,14 @@ def download(filename):
 
 
 @app.route('/help')
-def help():
-    print("got called help ....")
+def help():    
     return render_template('help.html')
 
 if __name__ == '__main__':
-    #app.run(debug=True)
-    #ssl_context = ('cert.pem', 'key.pem')
+    #app.run(debug=True)    
     app.run(host='10.1.13.63', port=5000, debug=True)
     #app.run(host='192.168.68.107', port=5000, debug=True)
+    
+    #Setting up my own certificates to enable secure connection.
+    #ssl_context = ('cert.pem', 'key.pem')
     #app.run(host='10.1.13.63', port=5000, debug=True,ssl_context=ssl_context)

@@ -38,7 +38,6 @@ class BinaryFileIO:
  
     def update_signature(self, signature_val):
         with open(self.copy_file_path, 'r+b') as file:
-            #print("DEBUG - Signature length " ,self.data_layout['SIGNATURE'][0])
             file.seek(self.data_layout['DEMO_STAMP'][0])
             file.write(self.data_layout['DEMO_STAMP'][2])
             file.seek(self.data_layout['SIGNATURE'][0])
