@@ -51,12 +51,9 @@ def welcome():
                 error_code= 0x2
                 verification_result = False
 
-        else:
-            # Delete the file after processing
-            #os.remove(file_path)
+        else:                  
             error_code= 0x1
             verification_result = False            
-        
 
         if verification_result:
             # Provide a button to download the signed file
@@ -78,8 +75,7 @@ def welcome():
             # Render the template with the hash value, signature, verification result, and download link
             return render_template('success.html', **data)                         
         else:
-            #@TODO : Delete the uploaded File 
-            # Delete the file after processing
+            #@TODO : Delete the uploaded File             
             os.remove(file_path)
             # Return an error message indicating that the upload failed verification            
             if (error_code== 0x2):

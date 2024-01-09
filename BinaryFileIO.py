@@ -32,6 +32,8 @@ class BinaryFileIO:
         os.makedirs(destination_folder, exist_ok=True)
         copy_file_path = os.path.join(destination_folder, f"signed_{os.path.basename(self.file_path)}")
         shutil.copyfile(self.file_path, copy_file_path)
+        #IMPORTANT : delete the orignal uploaded file and keep only the copied file.
+        os.remove(self.file_path)
         self.copy_file_path = copy_file_path
  
     def update_signature(self, signature_val):

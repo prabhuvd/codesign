@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help</title>
+    <title>FAQ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,14 +17,17 @@
             color: white;
             text-align: center;
             padding: 1em;
-            position: relative; /* Added relative positioning for logo alignment */
+            display: flex;
+            align-items: center;
         }
-        .header-content {
-            flex-grow: 1;
-        }        
+        .title-container {
+            display: flex;
+            flex-direction: column;           
+            text-align: center;
+        }
 
         .logo_image {
-            max-width: 20%;
+            max-width: 15%;
             float:left;
         }
 
@@ -41,6 +44,7 @@
         h1 {
             margin-top: 20px;
             font-size: 32px;
+            text-align:center;
         }
         h2 {
             margin-top: 20px;
@@ -69,16 +73,15 @@
             font-size: 25px;
             margin-left: auto; /* Move the help link to the right */
         }
-        .file_structure_image,
-        .signing_image,
+
         .ca_image {
             max-width: 100%;
             height: auto;
         }
 
         .signing_image {
-            max-width: 60%;
-            height: 600px; /* Adjusted height to 100 pixels, replace with your desired value */
+            max-width: 70%;
+            height: 700px; /* Adjusted height to 100 pixels, replace with your desired value */
         }
 
         .LB_structure_image {
@@ -93,22 +96,22 @@
         .ca_image {
             max-width: 50%;
         }
+        .space-style::before {
+            content: '\00a0'; /* Unicode character for non-breaking space */
+            letter-spacing: 10.25em; /* Adjust the letter-spacing to control the number of spaces */
+        }
 
-
-
-  
     </style>
 </head>
-<body>
-
+<body>    
     <header>            
-
         <img id="logo" src="{{ url_for('static', filename='images/logo_1.png') }}" alt="Company Logo" class="logo_image">
         <div class="title-container">
-            <h1>FAQ's</h1> <br>            
+            <h1 class="space-style"> FAQ's</h1> <br>           
             <a href="{{ url_for('welcome') }}" class="help_link"> Home  </a> <br>
         </div>        
     </header>
+
 
     <main>
         <h2>1) What are Digital Signatures?</h2>
@@ -140,10 +143,11 @@
         <img src="{{ url_for('static', filename='images/file_structure.png') }}"   alt="Hex View" class="file_structure_image"> 
      
         <h2>5) What is a rollback attack ? </h2>
-        <p>In the world of cybersecurity, a rollback attack refers to a malicious attempt to manipulate a system's state by reverting it to a previous and potentially vulnerable condition. Imagine it like rewinding time on a computer system software, but for nefarious purposes.</p>
+        <p>In the world of cybersecurity, a rollback attack refers to a malicious attempt to manipulate a system's state by reverting it to a previous and potentially vulnerable condition. Imagine it like rewinding time on a computer system software, but for nefarious purposes.
+           A rollback attack, also known as a downgrade attack or version rollback attack, is a malicious attempt to force a computer system or network communication back to a less secure state.
+        </p>
         <br><br><br><br>
         <br><br><br><br>
-        
 
     </main>
 
