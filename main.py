@@ -1,3 +1,4 @@
+from enum import Enum
 from flask import Flask, render_template, request, send_file
 from BinaryFileIO import BinaryFileIO
 from CodeSign import CodeSign
@@ -6,6 +7,13 @@ import os
  
 keys_folder = 'Keys'
 app = Flask(__name__)
+
+# Enum for error codes
+class ErrorCode(Enum):
+    HEADER_MISSING = 0x1
+    HASH_MISMATCH = 0x2
+
+    
 def byteArray2Hex(bytearrdata):
     return bytearrdata.hex()
 
@@ -29,6 +37,7 @@ def welcome():
 
         # Validate the binary file
         file_io = BinaryFileIO(file_path)
+        error_code = None  # Initialize error code
         if file_io.validate_binary():
             len= file_io.get_file_length()
             data_to_be_signed = file_io.get_code()
@@ -48,11 +57,11 @@ def welcome():
             uploaded_hash=  file_io.get_header_field('HASH')
             
             if (hash_value != uploaded_hash):                
-                error_code= 0x2
+                error_code= ErrorCode.HASH_MISMATCH
                 verification_result = False
 
         else:                  
-            error_code= 0x1
+            error_code= ErrorCode.HEADER_MISSING
             verification_result = False            
 
         if verification_result:
@@ -78,9 +87,9 @@ def welcome():
             #@TODO : Delete the uploaded File             
             os.remove(file_path)
             # Return an error message indicating that the upload failed verification            
-            if (error_code== 0x2):
+            if (error_code==ErrorCode.HASH_MISMATCH):
                 error_message = "Verification Failed: Calculated and Input HASH did not match !  "
-            elif(error_code== 0x1):
+            elif(error_code==ErrorCode.HEADER_MISSING):
                 error_message = "Verification Failed: Header(0xCOFFEEEE) Missing"
         
             return render_template('error.html', error_message=error_message)        
@@ -97,14 +106,13 @@ def download(filename):
 
 
 @app.route('/help')
-def help():    
+def help():
+    print("got called help ....")
     return render_template('help.html')
 
 if __name__ == '__main__':
-    #app.run(debug=True)    
+    #app.run(debug=True)
+    #ssl_context = ('cert.pem', 'key.pem')
     app.run(host='10.1.13.63', port=5000, debug=True)
     #app.run(host='192.168.68.107', port=5000, debug=True)
-    
-    #Setting up my own certificates to enable secure connection.
-    #ssl_context = ('cert.pem', 'key.pem')
     #app.run(host='10.1.13.63', port=5000, debug=True,ssl_context=ssl_context)
