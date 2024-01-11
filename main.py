@@ -106,8 +106,7 @@ def download(filename):
 
 
 @app.route('/help')
-def help():
-    print("got called help ....")
+def help():   
     return render_template('help.html')
 
 if __name__ == '__main__':
