@@ -19,8 +19,8 @@ Bash git clone https://github.com/prabhuvd/codesign.git
 
 Use code with caution. Learn more
 Install dependencies:
-Bash
-cd code-signing-server
+
+cd codesign
 pip install -r requirements.txt
 Use code with caution. Learn more
 Usage
