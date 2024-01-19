@@ -1,3 +1,12 @@
+
+# -------------------------------------------------------------------------------
+# Description: This module provides functionalities for binary file operations 
+# 
+#
+# Author:      Prabhu Desai
+# Email:       pdesai@one.ai
+# 
+# -------------------------------------------------------------------------------
 import os
 import shutil
 class BinaryFileIO:
