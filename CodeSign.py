@@ -1,3 +1,13 @@
+# -------------------------------------------------------------------------------
+# Description: This module provides functionalities for code signing operations, 
+# including key management, signature generation, verification, and hash calculation.
+# 
+#
+# Author:      Prabhu Desai
+# Email:       pdesai@one.ai
+# 
+# -------------------------------------------------------------------------------
+
 import os
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
@@ -12,7 +22,10 @@ class CodeSign:
         # Initialize CodeSign object with private and public key files
         self.private_key = self.load_private_key_from_file(private_key_file)
         self.public_key = self.load_public_key_from_file(public_key_file)
-
+    
+    #Loads the private key from a PEM file. 
+    # IMPORTANT : The private key is stored in the server in plain text 
+    # and needs to be moved to KMS /HSM of AWS Cloud.
     def load_private_key_from_file(self, private_key_file):
         # Load private key from a file in PEM format
         with open(private_key_file, 'rb') as file:
@@ -22,7 +35,7 @@ class CodeSign:
                 password=None,
                 backend=default_backend()
             )
-
+    #Loads the public key from a PEM file
     def load_public_key_from_file(self, public_key_file):
         # Load public key from a file in PEM format
         with open(public_key_file, 'rb') as file:
@@ -51,7 +64,9 @@ class CodeSign:
             hashes.SHA256()
         )
         return bytearray(signature)
-
+    
+    
+    #Verifies a signature using the public key.
     def verify_signature(self, data_hash, signature):
         try:
             # Verify the signature using the public key
@@ -70,7 +85,9 @@ class CodeSign:
         except Exception as e:
             print("Signature verification failed:", str(e))
             return False
+        
 
+    #Prints information about the private or public key in PEM format.
     def display_key_info(self, key_type):
         # Display information about the private or public key in PEM format
         print(f"{key_type} Key Information (PEM Format):")
@@ -87,6 +104,9 @@ class CodeSign:
                 format=serialization.PublicFormat.SubjectPublicKeyInfo
             ).decode('utf-8'))
 
+
+
+    #Converts a hex string to bytes. (Static method)
     @staticmethod
     def hex_string_to_bytes(hex_string):
         # Convert a hex string to bytes

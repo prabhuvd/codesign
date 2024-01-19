@@ -1,8 +1,18 @@
+# -------------------------------------------------------------------------------
+# Description:This module implements a Flask web application for code signing, 
+# file validation, and signature verification.
+# 
+#
+# Author:      Prabhu Desai
+# Email:       pdesai@one.ai
+# 
+# -------------------------------------------------------------------------------
+
 from enum import Enum
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file 
 from BinaryFileIO import BinaryFileIO
 from CodeSign import CodeSign
-  
+ 
 import os
  
 keys_folder = 'Keys'
@@ -17,6 +27,12 @@ class ErrorCode(Enum):
 def byteArray2Hex(bytearrdata):
     return bytearrdata.hex()
 
+# welcome():
+
+# Handles both GET and POST requests for the main page.
+# Renders the welcome page on GET requests.
+# Processes file uploads on POST requests, performs signature generation and verification, and provides feedback to the user. 
+    
 @app.route('/', methods=['GET', 'POST'])
 def welcome():
     if request.method == 'POST':
@@ -108,10 +124,11 @@ def download(filename):
 @app.route('/help')
 def help():   
     return render_template('help.html')
-
+ 
+     
 if __name__ == '__main__':
     #app.run(debug=True)
     #ssl_context = ('cert.pem', 'key.pem')
-    app.run(host='10.1.13.63', port=5000, debug=True)
-    #app.run(host='192.168.68.107', port=5000, debug=True)
+    #app.run(host='10.1.13.63', port=5000, debug=True)
+    app.run(host='192.168.68.107', port=5000, debug=True)
     #app.run(host='10.1.13.63', port=5000, debug=True,ssl_context=ssl_context)
